@@ -1,0 +1,31 @@
+Revision history for Net-Twitter-FriendFinder
+
+0.02       2007-11-15/00:18
+           - first release to CPAN
+
+0.01_08    2007-11-14/19:29
+           - use Net::Twitter::Diff insetead of Net::Twitter
+
+0.01_07    2007-11-14/00:19
+           - Update Net::Twitter::FriendFinder::From::TwitterDiff for version up.
+
+0.01_06    2007-11-09/12:50
+           - Add Net::Twitter::FriendFinder::From::URL.
+
+0.01_05    2007-01-09/11:33
+           - Add Net::Twitter::FriendFinder::From::TwitterDiff.
+
+0.01_04    2007-11-08/16:40
+           - Add Net::Twitter::FriendFinder::From::TwitterKensaku.
+
+0.01_03    2007-11-08/15:04
+           - filter_already_followers support. it can be reduced API request.
+             for this fix you must set username and passowrd at new() parameters
+           - support sleep setting. 
+
+0.01_02    2007-11-08/00:21
+           - Bug Fix: can not load custom resource module.
+
+0.01_01    2007-11-07/23:31
+           -First version, released on an unsuspecting world.
+

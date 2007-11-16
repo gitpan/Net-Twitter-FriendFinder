@@ -4,11 +4,11 @@ use warnings;
 use strict;
 use UNIVERSAL::require;
 use base qw/Class::Accessor::Fast/;
-__PACKAGE__->mk_accessors(qw/default from setting ids scores resources filters)/);
+__PACKAGE__->mk_accessors(qw/default from setting ids scores resources filters mask/);
 use Text::SimpleTable;
 use Net::Twitter::Diff;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 
 sub search {
@@ -56,6 +56,12 @@ sub search {
         }
         $self->{filters} = \@filters;
 
+    }
+    if( defined $self->{setting}{username} ) {
+        delete $data->{  $self->{setting}{username} } if defined  $data->{  $self->{setting}{username} };
+    }
+    for my $screen_name ( @{ $self->{mask} } ) {
+        delete $data->{ $screen_name } if defined $data->{ $screen_name };
     }
 
     my @ids = sort { $data->{ $a } <=> $data->{ $b } } keys %{ $data };
@@ -141,7 +147,7 @@ Net::Twitter::FriendFinder - find your twitter friend :-)
 Hello. I started twitter but I did not have much friends.  Since I am shay, so that I created this
 module.
 
-You can find twitter friends by using keyword search and then you can follow friends whith this module.
+You can find twitter friends by using keyword search and then you can follow friends with this module.
 
 =head1 SYNOPSYS
 
@@ -168,9 +174,15 @@ You can find twitter friends by using keyword search and then you can follow fri
         }
       });
 
+    # mask who you do not want to find.
+    $tf->mask([qw/xxx yyy zzz/]);
     $tf->search( $keyword );
     $tf->show();
     $tf->follow();
+
+    #print Dumepr $twf->ids();
+    #print Dumepr $twf->filters();
+
 
 =head1 MODULE
 
@@ -249,7 +261,7 @@ Also if you made your own resource package then set your package name with +.
 
 =head2 search
 
- this seach method try to search your friends. 
+this seach method try to search your friends. 
 
 =head2 show
 
@@ -292,9 +304,25 @@ then
     $tw->show();
     $tw->follow();
 
+=head2 mask
+
+you can set screen_names in array ref who you want to avoid search.
+
+ $twf->mask([qw/xxx yyy zzz/]);
+
+=head2 ids
+
+get screen_names
+
+=head2 filters
+
+get filterd screen_names 
+
 =head1 SEE ALSO
 
 L<Net::Twitter>
+
+L<Net::Twitter::From>
 
 L<Net::Twitter::FriendFinder::From::Google>
 

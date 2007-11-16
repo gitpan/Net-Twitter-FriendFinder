@@ -40,8 +40,8 @@ Net::Twitter::FriendFinder::From::TwitterDiff - search from Net::Twitter::Diff
 
 =head1 SYNOPSYS
 
-use Net::Twitter::FriendFinder;
- my $tf 
+    use Net::Twitter::FriendFinder;
+    my $tf 
     = Net::Twitter::FriendFinder->new({ 
         from => {
             'TwitterDiff' => { username => 'tomyhero' , password => '********' }
@@ -62,6 +62,7 @@ You can get Net::Twitter::Diff from bellow svn repo for now.
  svn co http://svn.coderepos.org/share/lang/perl/Net-Twitter-Diff/trunk/
 
 Search friends who are not folloing bug they are following you.
+Search foloowing somebody has.
 
 =head1 METHOD
 
